@@ -13,12 +13,14 @@ app.url_map.strict_slashes = False
 CORS(app, origins="0.0.0.0")
 app.register_blueprint(app_views)
 
+
 @app.teardown_appcontext
 def tear_down(self):
     '''
     close query after each session
     '''
     storage.close()
+
 
 @app.errorhandler(404)
 def not_found(error):
